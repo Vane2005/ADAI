@@ -1,18 +1,72 @@
-## Getting Started
+# Sistema de gestión eficiente de usuarios🌳🔴⚫
+## PROYECTO FINAL ADAI
+Estudiantes:
+- Vanessa Durán Mona 2359394-3743
+- Juan Damián Cuervo Buitrago 2359143-3743
+- Alejandra Osorio Giraldo
+- Manuel Rosero Zuñiga 
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
 
-## Folder Structure
+Este repositorio contiene una implementación en Java de un **Árbol RojiNegro (Red-Black Tree)**, una estructura de datos auto-balanceada basada en árboles binarios de búsqueda. Este tipo de árbol mantiene su balanceados automáticamente tras operaciones de **inserción**, **eliminación** y **búsqueda**, garantizando un rendimiento eficiente en todas ellas, para llevar a cabo la gestion eficiente de usuarios activos en una empresa.
 
-The workspace contains two folders by default, where:
+## Características del proyecto📌
+- Adición y eliminación de usuarios activos de forma eficiente.
+- Consultar rápidamente el usuario con el menor identificador mayor o igual a un valor dado (por ejemplo, para emparejar usuarios en una cola de espera).
+- Mantiene siempre los datos ordenados por identificador de usuario.
+- Garantiza que todas las operaciones (inserción, eliminación, búsqueda) se realicen en el peor de los casos en tiempo logarítmico, sin degradación de rendimiento, incluso bajo inserciones y eliminaciones intensas.
+## Características de la estructura de datos implementada (arboles rojinegros)📌
+- Inserción de nodos con balanceo automático.
+- Búsqueda de claves.
+- Búsqueda del mínimo y máximo.
+- Estructura extensible con atributos como `name`, `age`, `phone`.
+- Métodos para rotaciones izquierda y derecha.
+- Validación de casos para mantener las propiedades RojiNegras.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## Estructura del Árbol
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+Cada nodo tiene:
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+- `key`: clave flotante para ordenamiento.
+- `left` y `right`: hijos izquierdo y derecho.
+- `parent`: referencia al nodo padre.
+- `color`: "red" o "black".
+- Atributos adicionales (`name`, `age`, `phone`), útiles para almacenar la información asociada a los usuarios.
 
-## Dependency Management
+## Operaciones Principales ⚙️
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+- `insertar(nodoBinario nuevoNodo)`: Inserta un nodo y ajusta el árbol para mantener las propiedades RojiNegras.
+- `buscar(float key)`: Busca un nodo por su clave.
+- `maximo()`: Retorna el nodo con la clave más alta.
+- `minimo()`: Retorna el nodo con la clave más baja.
+- `rotacionIzquierda(nodoBinario nodo)`: Aplica rotación izquierda.
+- `rotacionDerecha(nodoBinario nodo)`: Aplica rotación derecha.
+
+> **Nota:** La función de **eliminación** está pendiente de implementación.
+
+## Requisitos ✅
+
+- Java 8 o superior.
+- Un entorno de desarrollo compatible (Eclipse, IntelliJ IDEA, VS Code, etc.).
+
+## Cómo ejecutar 🧪
+
+1. Clona el repositorio:
+
+```bash
+git clone https://github.com/tuusuario/arbol-rojinegro-java.git
+cd arbol-rojinegro-java
+```
+2. Dirigete al editor de tu preferencia y abre la carpeta src, y ejecuta el archivo App.java
+3. Realiza las operaciones que quieras
+
+## 🤝 Contribuciones
+¡Las contribuciones son bienvenidas!
+- Haz un fork del repositorio.
+- Crea una rama nueva: git checkout -b nueva-funcionalidad
+- Realiza tus cambios y haz commit: git commit -am 'Agregar funcionalidad X'
+- Abre un Pull Request.
+
+## 📄 Licencia
+Este proyecto está licenciado bajo la licencia MIT. Consulta el archivo LICENSE para más detalles.
+
+Desarrollado con 💻 en Java para propósitos académicos y de aprendizaje.
