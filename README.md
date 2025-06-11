@@ -53,7 +53,7 @@ Cada nodo tiene:
 1. Clona el repositorio:
 
 ```bash
-git clone https://github.com/tuusuario/arbol-rojinegro-java.git
+git clone https://github.com/Vane2005/ADAI.git
 cd arbol-rojinegro-java
 ```
 2. Dirigete al editor de tu preferencia y abre la carpeta src, y ejecuta el archivo App.java
