@@ -7,7 +7,7 @@ Estudiantes:
 - Manuel Rosero Zuñiga 
 
 
-Este repositorio contiene una implementación en Java de un **Árbol RojiNegro (Red-Black Tree)**, una estructura de datos auto-balanceada basada en árboles binarios de búsqueda. Este tipo de árbol mantiene su balanceados automáticamente tras operaciones de **inserción**, **eliminación** y **búsqueda**, garantizando un rendimiento eficiente en todas ellas, para llevar a cabo la gestion eficiente de usuarios activos en una empresa.
+Este repositorio contiene una implementación en Java de un **Árbol RojiNegro (Red-Black Tree)**, una estructura de datos auto-balanceada basada en árboles binarios de búsqueda. Este tipo de árbol mantiene su balance automáticamente tras operaciones de **inserción**, **eliminación** y **búsqueda**, garantizando un rendimiento eficiente en todas ellas, para llevar a cabo la gestion eficiente de usuarios activos en una empresa.
 
 ## Características del proyecto📌
 - Adición y eliminación de usuarios activos de forma eficiente.
