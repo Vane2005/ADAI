@@ -1,7 +1,7 @@
 # Sistema de gestión eficiente de usuarios🌳🔴⚫
 ## PROYECTO FINAL ADAI
 Estudiantes:
-- Vanessa Durán Mona 2359394-3743
+- Vanessa Alexandra Durán Mona 2359394-3743
 - Juan Damián Cuervo Buitrago 2359143-3743
 - Alejandra Osorio Giraldo
 - Manuel Rosero Zuñiga 
