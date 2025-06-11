@@ -76,6 +76,9 @@ public class nodoBinario {
             }
             nodo.left.right = nodo;
             nodo.parent = nodo.left;
+            if(nodo.left == nodo.parent){
+                nodo.left = null;
+            }
         }
         
         else{
@@ -123,6 +126,9 @@ public class nodoBinario {
             }
             nodo.right.left = nodo;
             nodo.parent = nodo.right;
+            if(nodo.right == nodo.parent){
+                nodo.right = null;
+            }
         }
         
         else{
