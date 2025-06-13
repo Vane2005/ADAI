@@ -58,5 +58,18 @@ public class App {
         for (nodoBinario nodo : nodosInOrder) {
         System.out.println("Clave: " + nodo.key + ", Color: " + nodo.color);
         }
+
+        ArrayList<nodoBinario> nodosPostOrden = postorden.recorrerPostOrden(root);
+        System.out.println("Recorrido Post-Orden:");
+        for (nodoBinario nodo : nodosPostOrden) {
+        System.out.println("Clave: " + nodo.key + ", Color: " + nodo.color);
+        }
+
+        ArrayList<nodoBinario> nodosPreOrden = preorden.recorrerPreOrden(root);
+        System.out.println("Recorrido Pre-Orden:");
+        for (nodoBinario nodo : nodosPreOrden) {
+        System.out.println("Clave: " + nodo.key + ", Color: " + nodo.color);
+        }
+
     }
 }
