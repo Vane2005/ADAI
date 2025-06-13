@@ -70,6 +70,46 @@ public class App {
         for (nodoBinario nodo : nodosPreOrden) {
         System.out.println("Clave: " + nodo.key + ", Color: " + nodo.color);
         }
+        
+        // Para cargar los registros desde un archivo y mostrarlos en diferentes recorridos
+        String rutaArchivo = "files/registros.txt";
+        nodoBinario raiz = recordR.cargarDesdeArchivo(rutaArchivo); // Se carga el árbol desde el archivo
 
+        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        System.out.println("\nSeleccione el tipo de recorrido en que desea ver los registros:");
+        System.out.println("1. In-Order");
+        System.out.println("2. Pre-Order");
+        System.out.println("3. Post-Order");
+        System.out.print("Opción: ");
+        byte opcion = 1; // Valor por defecto
+        try {
+            opcion = (byte) scanner.nextInt();
+        } catch (java.util.InputMismatchException e) {
+            System.out.println("Entrada no válida. Se usará In-Order por defecto.");
+            scanner.nextLine();
+        }
+
+        ArrayList<nodoBinario> lista = null;
+        switch (opcion) {
+            case 1:
+                lista = inorder.recorrerInOrder(raiz);
+                break;
+            case 2:
+                lista = preorden.recorrerPreOrden(raiz);
+                break;
+            case 3:
+                lista = postorden.recorrerPostOrden(raiz);
+                break;
+            default:
+                System.out.println("Opción no válida. Se usará In-Order por defecto.");
+                lista = inorder.recorrerInOrder(raiz);
+                break;
+        }
+
+        System.out.println("\n");
+        for (nodoBinario nodo : lista) {
+            System.out.println("ID: " + nodo.key + ", Nombre: " + nodo.name + ", Edad: " + nodo.age + ", Tel: " + nodo.phone);
+        }
+        scanner.close();
     }
 }

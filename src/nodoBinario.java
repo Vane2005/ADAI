@@ -7,7 +7,7 @@ public class nodoBinario {
     nodoBinario parent;
     String color;
     String name;
-    int age;
+    byte age;
     String phone;
 
     // Constructor de la clase nodo
