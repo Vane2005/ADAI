@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class App {
     public static void main(String[] args) throws Exception {
     
@@ -50,5 +52,11 @@ public class App {
         System.out.println("hijo izquierdo del hijo derecho del derecho: " + root.right.right.left.color);
         System.out.println("hijo derecho del hijo derecho del derecho: " + root.right.right.right.color);
 
+
+        ArrayList<nodoBinario> nodosInOrder = inorder.recorrerInOrder(root);
+        System.out.println("Recorrido In-Order:");
+        for (nodoBinario nodo : nodosInOrder) {
+        System.out.println("Clave: " + nodo.key + ", Color: " + nodo.color);
+        }
     }
 }
