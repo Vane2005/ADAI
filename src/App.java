@@ -70,6 +70,34 @@ public class App {
         for (nodoBinario nodo : nodosPreOrden) {
         System.out.println("Clave: " + nodo.key + ", Color: " + nodo.color);
         }
+        
+        root = root.eliminar(17,root);
+
+        ArrayList<nodoBinario> nodosInOrderTest = inorder.recorrerInOrder(root);
+        System.out.println("Recorrido In-Order:");
+        for (nodoBinario nodo : nodosInOrderTest) {
+        System.out.println("Clave: " + nodo.key + ", Color: " + nodo.color);
+        }
+
+        System.out.println("Raiz: " + root.key);
+        System.out.println("Hijo izquierdo: " + root.left.key);
+        System.out.println("hijo izquierdo del hijo izquierdo: " + root.left.left.key);
+        System.out.println("Hijo derecho: " + root.right.key);
+        System.out.println("hijo izquierdo del hijo derecho: " + root.right.left.key);
+        System.out.println("hijo derecho del hijo izquierdo del derecho: " + root.right.left.right.key);
+        System.out.println("hijo derecho del hijo derecho: " + root.right.right.key);
+        System.out.println("hijo izquierdo del hijo derecho del derecho: " + root.right.right.left.key);
+        System.out.println("hijo derecho del hijo derecho del derecho: " + root.right.right.right.key);
+        System.out.println("COLORES");
+        System.out.println("Raiz: " + root.color);
+        System.out.println("Hijo izquierdo: " + root.left.color);
+        System.out.println("hijo izquierdo del hijo izquierdo: " + root.left.left.color);
+        System.out.println("Hijo derecho: " + root.right.color);
+        System.out.println("hijo izquierdo del hijo derecho: " + root.right.left.color);
+        System.out.println("hijo derecho del hijo izquierdo del derecho: " + root.right.left.right.color);
+        System.out.println("hijo derecho del hijo derecho: " + root.right.right.color);
+        System.out.println("hijo izquierdo del hijo derecho del derecho: " + root.right.right.left.color);
+        System.out.println("hijo derecho del hijo derecho del derecho: " + root.right.right.right.color);
 
     }
 }

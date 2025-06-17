@@ -272,6 +272,127 @@ public class nodoBinario {
 
     // Método para eliminar un nodo en el árbol
 
+    public nodoBinario eliminar(float key, nodoBinario root) {
+        nodoBinario z = root.buscar(key);
+        if (z == null) return root;
+        //Variables necesarias para el proceso y por si toca hacer un cambio
+        nodoBinario y = z;
+        String Ocolor = y.color;
+        nodoBinario x;
+        //Aplicaciones de casos basado en el fix up
+        //Caso 1: No hijo izquierdo
+        if(z.left == null) {
+            x = z.right;
+            root = transplantar(root, z, z.right);
+        }
+        //Caso 2: No hijo derecho
+        else if(z.right == null) {
+            x = z.left;
+            root = transplantar(root, z, z.left); 
+        }
+        //Caso 3: Dos hijos
+        else {
+            y = z.right.minimo();
+            Ocolor = y.color;
+            x = y.right;
+            if (y.parent == z) {
+                if (x != null) x.parent = y;
+            } else {
+                root = transplantar(root, y, y.right);
+                y.right = z.right;
+                if (y.right != null) y.right.parent = y;
+            }
+            root = transplantar(root, z, y);
+            y.left = z.left;
+            if (y.left != null) y.left.parent = y;
+            y.color = z.color;
+        }
+
+        //Asegurarse de que los colores sean los adecuados y se mantengan las propiedades luego de la eliminación
+        if ("black".equals(Ocolor)) {
+            while (x != root && (x == null || "black".equals(x.color))) {
+                nodoBinario w;
+                //Revisión de distintos casos
+                if (x == x.parent.left) {
+                    w = x.parent.right;
+                    //El hermano es rojo
+                    if("red".equals(w.color)) {
+                        w.color = "black";
+                        x.parent.color = "red";
+                        x.parent.rotacionIzquierda(root);
+                        w = x.parent.right;
+                    }
+                    //Es N con dos hijos N
+                    if((w.left == null || "black".equals(w.left.color)) &&
+                        (w.right == null || "black".equals(w.right.color))) {
+                        w.color = "red";
+                        x = x.parent;
+                    }
+                    //Es N con un hijo izquierdo rojo y un hijo derecho N
+                    else{
+                        if (w.right == null || "black".equals(w.right.color)) {
+                            if (w.left != null) w.left.color = "black";
+                            w.color = "red";
+                            w.rotacionDerecha(root);
+                            w = x.parent.right;
+                        }
+                        //Hermano N con hijo derecho Rojo
+                        w.color = x.parent.color;
+                        x.parent.color = "black";
+                        if (w.right != null) w.right.color = "black";
+                        x.parent.rotacionIzquierda(root);
+                        x = root;
+                    }
+                //Lo mismo pero con otra orientación
+                }else{
+                    w = x.parent.left;
+                    if ("red".equals(w.color)) {
+                        w.color = "black";
+                        x.parent.color = "red";
+                        x.parent.rotacionDerecha(root);
+                        w = x.parent.left;
+                    }
+                    if((w.right == null || "black".equals(w.right.color)) &&
+                        (w.left == null || "black".equals(w.left.color))) {
+                        w.color = "red";
+                        x = x.parent;
+                    }else{
+                        if (w.left == null || "black".equals(w.left.color)) {
+                            if (w.right != null) w.right.color = "black";
+                            w.color = "red";
+                            w.rotacionIzquierda(root);
+                            w = x.parent.left;
+                        }
+                        w.color = x.parent.color;
+                        x.parent.color = "black";
+                        if(w.left != null) w.left.color = "black";
+                        x.parent.rotacionDerecha(root);
+                        x = root;
+                    }
+                }
+            }
+
+            if(x != null) x.color = "black";
+        }
+
+        return root; 
+    }
+
+    private nodoBinario transplantar(nodoBinario root, nodoBinario u, nodoBinario v) {
+        if(u.parent == null) {
+            root = v;
+        } else if(u == u.parent.left) {
+            u.parent.left = v;
+        } else {
+            u.parent.right = v;
+        }
+        if(v != null) {
+            v.parent = u.parent;
+        }
+        return root;
+    }
+
+
 
 
 
