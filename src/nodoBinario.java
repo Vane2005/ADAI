@@ -88,6 +88,9 @@ public class nodoBinario {
             temp.right = nodo.right;
             temp.parent = nodo.left;
             temp.color = nodo.color;
+            temp.name = nodo.name;
+            temp.age = nodo.age;
+            temp.phone = nodo.phone;
             if(temp.left != null) {
                 temp.left.parent = temp;
             }
@@ -99,6 +102,9 @@ public class nodoBinario {
             this.left = nodo.left.left;
             this.right = temp;
             this.parent = nodo.parent;
+            this.name = temp.name;
+            this.age = temp.age;
+            this.phone = temp.phone;
             if(this.left != null) {
                 this.left.parent = this;
             }
@@ -138,6 +144,10 @@ public class nodoBinario {
             temp.left = nodo.left;
             temp.parent = nodo.left;
             temp.color = nodo.color;
+            temp.name = nodo.name;
+            temp.age = nodo.age;
+            temp.phone = nodo.phone;
+
             if(temp.left != null) {
                 temp.left.parent = temp;
             }
@@ -149,6 +159,10 @@ public class nodoBinario {
             this.left = temp;
             this.right = nodo.right.right;
             this.parent = nodo.parent;
+            this.name = temp.name;
+            this.age = temp.age;
+            this.phone = temp.phone;
+
             if(this.left != null) {
                 this.left.parent = this;
             }
