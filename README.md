@@ -3,7 +3,7 @@
 Estudiantes:
 - Vanessa Alexandra Durán Mona 2359394-3743
 - Juan Damián Cuervo Buitrago 2359143-3743
-- Alejandra Osorio Giraldo
+- Alejandra Osorio Giraldo 2266128-3743
 - Manuel Rosero Zuñiga 
 
 
