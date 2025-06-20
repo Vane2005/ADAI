@@ -1,6 +1,15 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class recordR {
@@ -48,4 +57,51 @@ public class recordR {
 
         return raiz; // Devuelve la raíz del árbol construido
     }
+
+    public static void appendNodo(String rutaArchivo, nodoBinario n) {
+        try (BufferedWriter bw = new BufferedWriter(
+                 new FileWriter(rutaArchivo, true))) {
+
+            String linea = "\n" + n.key + "," + n.name + "," + n.age + "," + n.phone;
+            bw.write(linea);
+        } catch (IOException e) {
+            System.err.println("Error escribiendo registro: " + e.getMessage());
+        }
+    }
+
+    public static boolean deleteByKey(float key) {
+
+        Path path = Paths.get("files/registros.txt");
+        List<String> restantes = new ArrayList<>();
+        boolean eliminado = false;
+
+        try {
+            for (String linea : Files.readAllLines(path, StandardCharsets.UTF_8)) {
+
+                String[] datos = linea.split(",", 2);   // dividimos solo una vez
+                if (Float.parseFloat(datos[0]) == key) {
+                    eliminado = true;                   // ──> marcamos como borrada
+                } else {
+                    restantes.add(linea);               // mantenemos la línea
+                }
+            }
+
+            if (eliminado) {
+                /*Construimos un único String SIN salto tras la última línea */
+                String salida = String.join(System.lineSeparator(), restantes);
+                Files.write(path,
+                            salida.getBytes(StandardCharsets.UTF_8),
+                            StandardOpenOption.TRUNCATE_EXISTING,
+                            StandardOpenOption.WRITE);
+            
+            }
+        } catch (IOException | NumberFormatException e) {
+            System.err.println("Error al eliminar registro: " + e.getMessage());
+        }
+
+        
+
+        return eliminado;
+    }
+
 }

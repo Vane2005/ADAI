@@ -22,6 +22,18 @@ public class nodoBinario {
         this.color = "red"; // Color por defecto al ser el primer nodo insertado
     }
 
+    // Constructor con parámetros para crear un nodo con todos los atributos
+    public nodoBinario(float key, String name, String phone, byte age) {
+        this.key = key;
+        this.name = name;
+        this.phone = phone;
+        this.age = age;
+        this.left = null;
+        this.right = null;
+        this.parent = null;
+        this.color = "red"; // Color por defecto al ser el primer nodo insertado
+    }
+
     // Constructor por defecto
     public nodoBinario() {
     }
