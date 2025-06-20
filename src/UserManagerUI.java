@@ -7,6 +7,9 @@ public class UserManagerUI extends JFrame {
 
     public nodoBinario root;
 
+    private DefaultTableModel model;
+    private static final String[] columnNames = {"ID","Nombre","Teléfono","Edad"};
+    
     private static final Font BASE_FONT   = new Font(Font.SANS_SERIF, Font.PLAIN, 16);
     private static final Font LABEL_FONT  = BASE_FONT.deriveFont(Font.BOLD);
     private static final Font TITLE_FONT  = BASE_FONT.deriveFont(Font.BOLD, 22f);
@@ -39,7 +42,7 @@ public class UserManagerUI extends JFrame {
         tabs.addTab("Agregar",  buildAgregarTab(this.root));
         tabs.addTab("Eliminar", buildEliminarTab(this.root));
         tabs.addTab("Buscar",   buildBuscarTab(this.root));
-        tabs.addTab("Visualizar", buildVisualizarTab(this.root));  
+        tabs.addTab("Visualizar", buildVisualizarTab());  
 
         add(tabs, BorderLayout.CENTER);
     }
@@ -76,6 +79,7 @@ public class UserManagerUI extends JFrame {
                 root.insertar(newUser);
                 this.root = root; // Actualizamos la raíz del árbol
                 recordR.appendNodo("files/registros.txt", newUser);
+                cargarEnTabla(); // Actualizamos la tabla visualizada
                 JOptionPane.showMessageDialog(this, "Usuario agregado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "Id y Edad deben ser números enteros.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -106,6 +110,7 @@ public class UserManagerUI extends JFrame {
         float idNum = (float) Integer.parseInt(id);
         this.root = root.eliminar(idNum, root);
         if(recordR.deleteByKey(idNum)) {
+            cargarEnTabla(); // Actualizamos la tabla visualizada
             JOptionPane.showMessageDialog(this, "Usuario eliminado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "Usuario no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -190,15 +195,12 @@ public class UserManagerUI extends JFrame {
     }
 
     /* ========= Pestaña: VISUALIZAR ========= */
-    private JPanel buildVisualizarTab(nodoBinario root) {
-        root = this.root; 
+    private JPanel buildVisualizarTab() {
         //Se crea el array de usuarios
-        ArrayList<nodoBinario> listaUsuarios = null;
-        listaUsuarios = inorder.recorrerInOrder(root);
+        ArrayList<nodoBinario> listaUsuarios = inorder.recorrerInOrder(this.root);
 
         JPanel panel = new JPanel(new BorderLayout());
 
-        String[] columnNames = {"ID", "Nombre", "Teléfono", "Edad"};
         Object[][] emptyData  = {}; // tabla vacía por defecto
 
         // insertamos los usuarios en la tabla
@@ -208,7 +210,7 @@ public class UserManagerUI extends JFrame {
             emptyData[emptyData.length - 1] = row;
         }
 
-        DefaultTableModel model = new DefaultTableModel(emptyData, columnNames) {
+        model = new DefaultTableModel(emptyData, columnNames) {
             // evitamos edición directa de celdas
             @Override public boolean isCellEditable(int row, int col) { return false; }
         };
@@ -222,6 +224,17 @@ public class UserManagerUI extends JFrame {
         panel.add(scrollPane, BorderLayout.CENTER);
 
         return panel;
+    }
+
+    /* ========= Método de refresco ========= */
+    private void cargarEnTabla() {
+        model.setRowCount(0);     
+
+        for (nodoBinario n : inorder.recorrerInOrder(root)) {
+            model.addRow(new Object[] {
+                n.key, n.name, n.phone, n.age
+            });
+        }
     }
 
     /* ========= Utilidades ========= */
