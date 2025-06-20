@@ -39,16 +39,16 @@ public class UserManagerUI extends JFrame {
         JTabbedPane tabs = new JTabbedPane();
         tabs.setFont(BASE_FONT);
 
-        tabs.addTab("Agregar",  buildAgregarTab(this.root));
-        tabs.addTab("Eliminar", buildEliminarTab(this.root));
-        tabs.addTab("Buscar",   buildBuscarTab(this.root));
+        tabs.addTab("Agregar",  buildAgregarTab());
+        tabs.addTab("Eliminar", buildEliminarTab());
+        tabs.addTab("Buscar",   buildBuscarTab());
         tabs.addTab("Visualizar", buildVisualizarTab());  
 
         add(tabs, BorderLayout.CENTER);
     }
 
     /* ========= Pestaña: AGREGAR ========= */
-    private JPanel buildAgregarTab(nodoBinario root) {
+    private JPanel buildAgregarTab() {
         JPanel p = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = createGbc();
 
@@ -77,7 +77,6 @@ public class UserManagerUI extends JFrame {
                 byte ageNum = (byte) Integer.parseInt(age);
                 nodoBinario newUser = new nodoBinario(idNum, name, tel, ageNum);
                 root.insertar(newUser);
-                this.root = root; // Actualizamos la raíz del árbol
                 recordR.appendNodo("files/registros.txt", newUser);
                 cargarEnTabla(); // Actualizamos la tabla visualizada
                 JOptionPane.showMessageDialog(this, "Usuario agregado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
@@ -90,7 +89,7 @@ public class UserManagerUI extends JFrame {
     }
 
     /* ========= Pestaña: ELIMINAR ========= */
-    private JPanel buildEliminarTab(nodoBinario root) {
+    private JPanel buildEliminarTab() {
         JPanel p = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = createGbc();
 
@@ -122,7 +121,7 @@ public class UserManagerUI extends JFrame {
     }
 
     /* ========= Pestaña: BUSCAR ========= */
-    private JPanel buildBuscarTab(nodoBinario root) {
+    private JPanel buildBuscarTab() {
         JPanel p = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = createGbc();
 
@@ -197,7 +196,7 @@ public class UserManagerUI extends JFrame {
     /* ========= Pestaña: VISUALIZAR ========= */
     private JPanel buildVisualizarTab() {
         //Se crea el array de usuarios
-        ArrayList<nodoBinario> listaUsuarios = inorder.recorrerInOrder(this.root);
+        ArrayList<nodoBinario> listaUsuarios = inorder.recorrerInOrder(root);
 
         JPanel panel = new JPanel(new BorderLayout());
 
