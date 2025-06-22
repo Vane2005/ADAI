@@ -3,8 +3,8 @@
 Estudiantes:
 - Vanessa Alexandra Durán Mona 2359394-3743
 - Juan Damián Cuervo Buitrago 2359143-3743
-- Alejandra Osorio Giraldo
-- Manuel Rosero Zuñiga 
+- Alejandra Osorio Giraldo 2266128-3743
+- Manuel Rosero Zuñiga 2176007-3743
 
 
 Este repositorio contiene una implementación en Java de un **Árbol RojiNegro (Red-Black Tree)**, una estructura de datos auto-balanceada basada en árboles binarios de búsqueda. Este tipo de árbol mantiene su balance automáticamente tras operaciones de **inserción**, **eliminación** y **búsqueda**, garantizando un rendimiento eficiente en todas ellas, para llevar a cabo la gestion eficiente de usuarios activos en una empresa.
@@ -21,6 +21,7 @@ Este repositorio contiene una implementación en Java de un **Árbol RojiNegro (
 - Estructura extensible con atributos como `name`, `age`, `phone`.
 - Métodos para rotaciones izquierda y derecha.
 - Validación de casos para mantener las propiedades RojiNegras.
+- Eliminación de nodos, manteniendo las propiedades.
 
 ## Estructura del Árbol
 
@@ -40,8 +41,8 @@ Cada nodo tiene:
 - `minimo()`: Retorna el nodo con la clave más baja.
 - `rotacionIzquierda(nodoBinario nodo)`: Aplica rotación izquierda.
 - `rotacionDerecha(nodoBinario nodo)`: Aplica rotación derecha.
-
-> **Nota:** La función de **eliminación** está pendiente de implementación.
+- `eliminar(float key, nodoBinario root)`: Elimina el nodo con clave igual a key si este existe
+- `transplantar(nodoBinario root, nodoBinario u, nodoBinario v)`: Transplanta en el nodo binario "root", el nodo u poor el nodo v. 
 
 ## Requisitos ✅
 
@@ -51,10 +52,8 @@ Cada nodo tiene:
 ## Cómo ejecutar 🧪
 
 1. Clona el repositorio:
-
 ```bash
 git clone https://github.com/Vane2005/ADAI.git
-cd arbol-rojinegro-java
 ```
 2. Dirigete al editor de tu preferencia y abre la carpeta src, y ejecuta el archivo App.java
 3. Realiza las operaciones que quieras
