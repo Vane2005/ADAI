@@ -307,12 +307,12 @@ public class nodoBinario {
         //Caso 1: No hijo izquierdo
         if(z.left == null) {
             x = z.right;
-            root = transplantar(root, z, z.right);
+            root = trasplantar(root, z, z.right);
         }
         //Caso 2: No hijo derecho
         else if(z.right == null) {
             x = z.left;
-            root = transplantar(root, z, z.left); 
+            root = trasplantar(root, z, z.left); 
         }
         //Caso 3: Dos hijos
         else {
@@ -322,11 +322,11 @@ public class nodoBinario {
             if (y.parent == z) {
                 if (x != null) x.parent = y;
             } else {
-                root = transplantar(root, y, y.right);
+                root = trasplantar(root, y, y.right);
                 y.right = z.right;
                 if (y.right != null) y.right.parent = y;
             }
-            root = transplantar(root, z, y);
+            root = trasplantar(root, z, y);
             y.left = z.left;
             if (y.left != null) y.left.parent = y;
             y.color = z.color;
@@ -402,7 +402,7 @@ public class nodoBinario {
         return root; 
     }
 
-    private nodoBinario transplantar(nodoBinario root, nodoBinario u, nodoBinario v) {
+    private nodoBinario trasplantar(nodoBinario root, nodoBinario u, nodoBinario v) {
         if(u.parent == null) {
             root = v;
         } else if(u == u.parent.left) {
@@ -415,10 +415,6 @@ public class nodoBinario {
         }
         return root;
     }
-
-
-
-
 
 
     // Método para buscar un nodo en el árbol
