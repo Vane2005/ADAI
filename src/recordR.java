@@ -71,7 +71,7 @@ public class recordR {
 
     public static boolean deleteByKey(float key) {
 
-        Path path = Paths.get("files/registros.txt");
+        Path path = Paths.get("files/registros2500_atras.txt");
         List<String> restantes = new ArrayList<>();
         boolean eliminado = false;
 

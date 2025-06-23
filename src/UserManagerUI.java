@@ -76,10 +76,14 @@ public class UserManagerUI extends JFrame {
                 float idNum = (float) Integer.parseInt(id);
                 byte ageNum = (byte) Integer.parseInt(age);
                 nodoBinario newUser = new nodoBinario(idNum, name, tel, ageNum);
-                root.insertar(newUser);
-                recordR.appendNodo("files/registros.txt", newUser);
-                cargarEnTabla(); // Actualizamos la tabla visualizada
-                JOptionPane.showMessageDialog(this, "Usuario agregado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                if(root.insertar(newUser)){
+                    recordR.appendNodo("files/registros2500_atras.txt", newUser);
+                    cargarEnTabla(); // Actualizamos la tabla visualizada
+                    JOptionPane.showMessageDialog(this, "Usuario agregado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else {
+                    JOptionPane.showMessageDialog(this, "El Id ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "Id y Edad deben ser números enteros.", "Error", JOptionPane.ERROR_MESSAGE);
             }

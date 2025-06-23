@@ -42,13 +42,13 @@ public class nodoBinario {
     // Método para insertar un nuevo nodo en el árbol
 
     // insercion binaria
-    public void insercion(nodoBinario nuevoNodo){
+    public boolean insercion(nodoBinario nuevoNodo){
         // Insertamos el nodo como un arbol binario normal
         if(nuevoNodo.key < this.key){
             if(this.left == null){
                 this.left = nuevoNodo;
                 nuevoNodo.parent = this;
-
+                return true; // Nodo insertado correctamente
             }
             else {
                 this.left.insercion(nuevoNodo);
@@ -58,15 +58,14 @@ public class nodoBinario {
             if(this.right == null){
                 this.right = nuevoNodo;
                 nuevoNodo.parent = this;
+                return true; // Nodo insertado correctamente
             }
             else{
                 this.right.insercion(nuevoNodo);
             }
         }
-        // Si el nodo ya existe, no hacemos nada
-        else {
-            System.out.println("El nodo con la clave " + nuevoNodo.key + " ya existe.");
-        }
+        return false; // Nodo ya existe
+        
     }
 
     // Definimos las rotaciones necesarias para mantener las propiedades
@@ -218,81 +217,81 @@ public class nodoBinario {
 
 
     // operacion de insercion
-    public void insertar(nodoBinario nuevoNodo){
+    public boolean insertar(nodoBinario nuevoNodo){
 
         // Primero, insertamos el nodo como un árbol binario normal
-        this.insercion(nuevoNodo);
+        if(this.insercion(nuevoNodo)){
+                
+            // Ahora, debemos mantener las propiedades del árbol
 
-        // Ahora, debemos mantener las propiedades del árbol
-
-        // Si el abuelo del nuevo nodo es nulo, significa que el padre del nuevo nodo es la raíz
-        if (nuevoNodo.parent.parent == null){
-            this.color = "black"; // Si es la raíz, debe ser negra
-        }
-
-        // Si el padre del nuevo nodo es rojo, entonces x tiene abuelo, y debemos hacer ajustes
-        else if (nuevoNodo.parent.color.equals("red")) {
-
-            while(nuevoNodo.color.equals("red") && nuevoNodo.parent.color.equals("red")){
-
-                //cuando el padre de x es un nodo izquierdo
-                if(nuevoNodo.parent.parent.key > nuevoNodo.parent.key){
-                    if (isCaso1(nuevoNodo)){
-                        nuevoNodo.parent.color = "black";
-                        nuevoNodo.parent.parent.right.color = "black"; 
-                        if(nuevoNodo.parent.parent.parent != null) {
-                            nuevoNodo.parent.parent.color = "red"; // el abuelo se vuelve 
-                        }
-                        nuevoNodo = nuevoNodo.parent.parent;
-                        
-                    }
-
-                    else if(isCaso2(nuevoNodo, "left")){
-                        rotacionIzquierda(nuevoNodo.parent);
-                        nuevoNodo = nuevoNodo.left;
-                    }
-                    else if(isCaso3(nuevoNodo, "left")){
-                        nuevoNodo.parent.color = "black";
-                        nuevoNodo.parent.parent.color = "red";
-                        rotacionDerecha(nuevoNodo.parent.parent);
-                    }
-                    else{
-                        break; // Si no se cumple ninguno de los casos, salimos del bucle
-                    }
-                }
-
-                // Cuando el padre de x es un nodo derecho
-                else{
-                    if (isCaso1(nuevoNodo)){
-                        nuevoNodo.parent.color = "black";
-                        nuevoNodo.parent.parent.left.color = "black"; 
-                        if(nuevoNodo.parent.parent.parent != null) {
-                            nuevoNodo.parent.parent.color = "red"; // el abuelo se vuelve rojo
-                        }
-                        nuevoNodo = nuevoNodo.parent.parent;
-                    }
-
-                    else if(isCaso2(nuevoNodo, "right")){
-                        rotacionDerecha(nuevoNodo.parent);
-                        nuevoNodo = nuevoNodo.right;
-                    }
-                    else if(isCaso3(nuevoNodo, "right")){
-                        nuevoNodo.parent.color = "black";
-                        nuevoNodo.parent.parent.color = "red";
-                        rotacionIzquierda(nuevoNodo.parent.parent);
-                        nuevoNodo = nuevoNodo.parent.left;
-                    }
-                    else{
-                        break; // Si no se cumple ninguno de los casos, salimos del bucle
-                    }
-                }
-            
+            // Si el abuelo del nuevo nodo es nulo, significa que el padre del nuevo nodo es la raíz
+            if (nuevoNodo.parent.parent == null){
+                this.color = "black"; // Si es la raíz, debe ser negra
             }
+
+            // Si el padre del nuevo nodo es rojo, entonces x tiene abuelo, y debemos hacer ajustes
+            else if (nuevoNodo.parent.color.equals("red")) {
+
+                while(nuevoNodo.color.equals("red") && nuevoNodo.parent.color.equals("red")){
+
+                    //cuando el padre de x es un nodo izquierdo
+                    if(nuevoNodo.parent.parent.key > nuevoNodo.parent.key){
+                        if (isCaso1(nuevoNodo)){
+                            nuevoNodo.parent.color = "black";
+                            nuevoNodo.parent.parent.right.color = "black"; 
+                            if(nuevoNodo.parent.parent.parent != null) {
+                                nuevoNodo.parent.parent.color = "red"; // el abuelo se vuelve 
+                            }
+                            nuevoNodo = nuevoNodo.parent.parent;
+                        }
+
+                        else if(isCaso2(nuevoNodo, "left")){
+                            rotacionIzquierda(nuevoNodo.parent);
+                            nuevoNodo = nuevoNodo.left;
+                        }
+                        else if(isCaso3(nuevoNodo, "left")){
+                            nuevoNodo.parent.color = "black";
+                            nuevoNodo.parent.parent.color = "red";
+                            rotacionDerecha(nuevoNodo.parent.parent);
+                            nuevoNodo = nuevoNodo.parent.right;
+                        }
+                        else{
+                            break; // Si no se cumple ninguno de los casos, salimos del bucle
+                        }
+                    }
+
+                    // Cuando el padre de x es un nodo derecho
+                    else{
+                        if (isCaso1(nuevoNodo)){
+                            nuevoNodo.parent.color = "black";
+                            nuevoNodo.parent.parent.left.color = "black"; 
+                            if(nuevoNodo.parent.parent.parent != null) {
+                                nuevoNodo.parent.parent.color = "red"; // el abuelo se vuelve rojo
+                            }
+                            nuevoNodo = nuevoNodo.parent.parent;
+                        }
+
+                        else if(isCaso2(nuevoNodo, "right")){
+                            rotacionDerecha(nuevoNodo.parent);
+                            nuevoNodo = nuevoNodo.right;
+                        }
+                        else if(isCaso3(nuevoNodo, "right")){
+                            nuevoNodo.parent.color = "black";
+                            nuevoNodo.parent.parent.color = "red";
+                            rotacionIzquierda(nuevoNodo.parent.parent);
+                            nuevoNodo = nuevoNodo.parent.left;
+                        }
+                        else{
+                            break; // Si no se cumple ninguno de los casos, salimos del bucle
+                        }
+                    }
+                
+                }
+            }
+            return true; // Nodo insertado correctamente
         }
 
-        else{
-            return;
-        }
+        return false; // Nodo ya existe
     }
 
 

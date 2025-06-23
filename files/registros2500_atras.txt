@@ -2496,5 +2496,5 @@
 5,Miguel Edgar Rodríguez Gómez,31,3913821292
 4,Yamile Paula Mena,25,3656203569
 3,Carlos García,32,3212682376
-2,Mercedes Castillo Posada,29,3199865786
-1,Luis Mora Pérez,21,3904826793
+1.0,Hernesto,4,546
+2.0,Hernesto,4,546
